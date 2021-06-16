@@ -11,160 +11,151 @@ namespace rstemenu
 {
 
 
-    public partial class Patient_info
+    public partial class CreateAdmin
     {
 
         /// <summary>
-        /// doctor_name control.
+        /// First_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox doctor_name;
+        protected global::System.Web.UI.WebControls.TextBox First_name;
 
         /// <summary>
-        /// pat_id control.
+        /// Last_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pat_id;
+        protected global::System.Web.UI.WebControls.TextBox Last_name;
 
         /// <summary>
-        /// pat_name control.
+        /// username control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox pat_name;
+        protected global::System.Web.UI.WebControls.TextBox username;
 
         /// <summary>
-        /// patientcheckdate control.
+        /// RegularExpressionValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText patientcheckdate;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
 
         /// <summary>
-        /// gen_male control.
+        /// LabelUserErrorusername control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton gen_male;
+        protected global::System.Web.UI.WebControls.Label LabelUserErrorusername;
 
         /// <summary>
-        /// gen_female control.
+        /// country control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton gen_female;
+        protected global::System.Web.UI.WebControls.TextBox country;
 
         /// <summary>
-        /// impct_yes control.
+        /// City control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton impct_yes;
+        protected global::System.Web.UI.WebControls.TextBox City;
 
         /// <summary>
-        /// impct_no control.
+        /// Email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton impct_no;
+        protected global::System.Web.UI.WebControls.TextBox Email;
 
         /// <summary>
-        /// missing_yes control.
+        /// email_checking control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton missing_yes;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator email_checking;
 
         /// <summary>
-        /// missing_no control.
+        /// LabelUserErroremail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton missing_no;
+        protected global::System.Web.UI.WebControls.Label LabelUserErroremail;
 
         /// <summary>
-        /// extracted_yes control.
+        /// contact_no control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton extracted_yes;
+        protected global::System.Web.UI.WebControls.TextBox contact_no;
 
         /// <summary>
-        /// extracted_no control.
+        /// Password control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton extracted_no;
+        protected global::System.Web.UI.WebControls.TextBox Password;
 
         /// <summary>
-        /// replacement_yes control.
+        /// Confirm_passsword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton replacement_yes;
+        protected global::System.Web.UI.WebControls.TextBox Confirm_passsword;
 
         /// <summary>
-        /// replacement_no control.
+        /// cmpNumbers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton replacement_no;
+        protected global::System.Web.UI.WebControls.CompareValidator cmpNumbers;
 
         /// <summary>
-        /// restorative_yes control.
+        /// ch_active_user control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton restorative_yes;
+        protected global::System.Web.UI.WebControls.CheckBox ch_active_user;
 
         /// <summary>
-        /// restorative_no control.
+        /// register_submit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton restorative_no;
-
-        /// <summary>
-        /// btn_next control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_next;
+        protected global::System.Web.UI.WebControls.Button register_submit;
     }
 }

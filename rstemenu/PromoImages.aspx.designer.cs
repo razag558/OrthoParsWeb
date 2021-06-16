@@ -7,56 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace rstemenu.Account
+namespace rstemenu
 {
 
 
-    public partial class Login
+    public partial class PromoImages
     {
 
         /// <summary>
-        /// Head1 control.
+        /// flupImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        protected global::System.Web.UI.WebControls.FileUpload flupImage;
 
         /// <summary>
-        /// Form1 control.
+        /// btnSavephoto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm Form1;
+        protected global::System.Web.UI.WebControls.Button btnSavephoto;
 
         /// <summary>
-        /// LoginUser control.
+        /// datatable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Login LoginUser;
-
-        /// <summary>
-        /// RegisterHyperLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink RegisterHyperLink;
-
-        /// <summary>
-        /// promotionimage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage promotionimage;
+        protected global::System.Web.UI.WebControls.GridView datatable;
     }
 }

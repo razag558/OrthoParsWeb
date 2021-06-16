@@ -63,5 +63,12 @@ namespace rstemenu
         {
             Response.Redirect("~/Doctor_Haris_bio.aspx");
         }
+        protected void MoveToPromotion(object sender, EventArgs e)
+        {
+            Response.Redirect("~/PromoImages.aspx");
+            
+        }
+
+
     }
 }

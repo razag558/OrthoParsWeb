@@ -47,7 +47,6 @@ namespace rstemenu
             catch (Exception ex)
             {
                 return "Er";
-                //Page.ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('Some error occured!!');", true);
             }
             finally
             {
@@ -58,7 +57,64 @@ namespace rstemenu
             return connStr.ToString();
         }
 
+      
 
+        public DataTable GetPromotionImages()
+        {
+            SqlConnection con = new SqlConnection(connStr);
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                cmd = new SqlCommand("SP_GetPromotionImages", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                return dt;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
+            }
+            return dt;
+        }
+
+        public DataTable FetchingPromotionImage()
+        {
+            SqlConnection con = new SqlConnection(connStr);
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                cmd = new SqlCommand("SP_FetchPromotionImage", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
+            }
+            return dt;
+        }
 
         public void Registeruser(string first, string last, string country_name, string user_name, string city, string email, string password, string phone)
         {
@@ -78,14 +134,35 @@ namespace rstemenu
                 cmd.Parameters.Add(new SqlParameter("@username", user_name));
                 cmd.Parameters.Add(new SqlParameter("@userpassword", password));
                 cmd.Parameters.Add(new SqlParameter("@phone_number", phone));
-
                 cmd.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand = cmd;
-                // SP_patient_registeration ............ procedure
-                // patient_register .......  table
-
                 da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
+            }
+        }
 
+        public void UPdatePhotoImage(int PateintID)
+        {
+            SqlConnection con = new SqlConnection(connStr);
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                cmd = new SqlCommand("SP_UpdatePromotion", con);
+                cmd.Parameters.Add(new SqlParameter("@ID", PateintID));
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
             }
             catch (Exception ex)
             {
@@ -99,6 +176,31 @@ namespace rstemenu
             }
         }
 
+        public void DeletePhotoRecord(string ID)
+        {
+            SqlConnection con = new SqlConnection(connStr);
+            con.Open();
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                cmd = new SqlCommand("SP_DeletePromotion", con);
+                cmd.Parameters.Add(new SqlParameter("@ID", ID));
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
+            }
+        }
 
         public void submitting_record(string preorposttreatment, float cvalue, float fvalue, float ivalue, float lvalue, float nvalue, string username, DateTime pars_datetime, string patient_id)
         {
@@ -109,7 +211,6 @@ namespace rstemenu
             DataTable dt = new DataTable();
             try
             {
-
                 cmd = new SqlCommand("SP_Patient_ParsRecord", con);
                 cmd.Parameters.Add(new SqlParameter("@preorposttreatment", preorposttreatment));
                 cmd.Parameters.Add(new SqlParameter("@cvalue", cvalue));
@@ -167,7 +268,36 @@ namespace rstemenu
             return dt;
         }
 
+        public void SaveImageInformation(string filename, string imgtype, string name)
+        {
+            SqlConnection con = new SqlConnection(connStr);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand();
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                cmd = new SqlCommand("SP_SubmitPictureInformation", con);
+                cmd.Parameters.Add(new SqlParameter("@filename", filename));
+                cmd.Parameters.Add(new SqlParameter("@imgtype", imgtype));
+                cmd.Parameters.Add(new SqlParameter("@username", name));
+                cmd.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand = cmd;
+                da.Fill(dt);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                cmd.Dispose();
+                con.Close();
+            }
  
+        }
+
         public DataTable Fetching_data_for_updating(int id)
         {
             SqlConnection con = new SqlConnection(connStr);

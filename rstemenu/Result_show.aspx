@@ -1,26 +1,36 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/sadmin.Master" AutoEventWireup="true" CodeBehind="Result_show.aspx.cs" Inherits="rstemenu.Result_show" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
- 
+
     <script src="Scripts/html2canvas.min.js"></script>
 
-     <script type="text/javascript">
-         function ConvertToImage(btnExport) {
-             html2canvas(document.getElementById('<% =contentcontrol.ClientID %>')).then(function (canvas) {
-                 var base64 = canvas.toDataURL();
-                 $("[id*=hdnImageData]").val(base64);
-                 __doPostBack(btnExport.name, "");
-             });
-             return false;
-         }
- 
- 
-     </script>
+    <script type="text/javascript">
+        function ConvertToImage(btnExport) {
+            html2canvas(document.getElementById('<% =contentcontrol.ClientID %>')).then(function (canvas) {
+                var base64 = canvas.toDataURL();
+                $("[id*=hdnImageData]").val(base64);
+                __doPostBack(btnExport.name, "");
+            });
+            return false;
+        }
+
+        function showingpanel() {
+            if (document.getElementById('<%= collapseExample.ClientID%>').style.display == "block") {
+                 document.getElementById('<%= collapseExample.ClientID%>').style.display = "none";
+             }
+             else if (document.getElementById('<%= collapseExample.ClientID%>').style.display == "none") {
+                 document.getElementById('<%= collapseExample.ClientID%>').style.display = "block"
+            }
+        }
+
+
+    </script>
 
     <style type="text/css">
         body {
             font-family: "helvetica";
         }
+
         button {
             margin: 0 7px 0 0;
             background-color: #f5f5f5;
@@ -34,6 +44,7 @@
             color: #565656;
             cursor: pointer;
         }
+
         .box {
             width: 200px;
             height: 200px;
@@ -43,14 +54,17 @@
             border: #969696 solid thin;
             padding: 5px;
         }
+
         .red {
             background-color: #e9967a;
             color: #f0f8ff;
         }
+
         .blue {
             background-color: #add8e6;
             color: #f0f8ff;
         }
+
         .cell {
             min-width: 40px;
             min-height: 20px;
@@ -236,14 +250,16 @@
 
 
 </asp:Content>
- 
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
- 
+
     <div class="row">
 
         <div class="col-xm-4" style="text-align: center;">
             <h1 style="color: #6f7a83; text-align: center; font-family: Georgia,'Times New Roman', Times, serif;">Complete Result 
-                <asp:LinkButton Font-Size="Large" Text="( help )" ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" />
+                 <a href="helppage.aspx?id=hp1new&heading=newhelp">
+                     <label>(help) </label>
+                 </a>
             </h1>
         </div>
 
@@ -253,31 +269,33 @@
 
         <div style="float: right; margin-right: 10%;">
             <div class="btn-group">
- 
-                <asp:Button runat="server" ID="download_csb" Visible="false" CssClass="btn btn-default btn-lg" Text="CSV " Style="margin-right: 5px;" OnClick="download_csv_Click" />
 
-                <asp:Button runat="server" ID="Button1" Width="100px" CssClass="btn btn-default btn-lg" Text="Email"  OnClick="Button1_Click" Style="margin-right: 5px;"  />
+                <div class="btn-group">
+                      <% if (User.IsInRole("Premium"))
+                          {%>
 
-                <asp:Button runat="server" ID="Button2" CssClass="btn btn-default btn-lg" Text="PDF" Style="margin-right: 5px;"  UseSubmitBehavior="false"  OnClick="download_pdf_Click" OnClientClick="return ConvertToImage(this)" />
-
-                <asp:Button runat="server" ID="Back_record" CssClass="btn btn-default btn-lg" Text="View Patients" Visible="true" Style="margin-right: 5px;" OnClick="View_patients" />
-
-              
-               
+                    <a>
+                        <label onclick="showingpanel();" style="margin-right: 5px;" class="btn btn-default btn-lg">Email </label>
+                    </a>
+                    <asp:Button runat="server" ID="Button2" CssClass="btn btn-default btn-lg" Text="PDF" Style="margin-right: 5px;" UseSubmitBehavior="false" OnClick="download_pdf_Click" OnClientClick="return ConvertToImage(this)" />
+                    <%} %>
+                    <a href="all_patients_record.aspx">
+                        <label class="btn btn-default btn-lg">View Patients</label></a>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" id="collapseExample" runat="server" style="display: none;">
 
         <div class="col-xm-6"></div>
         <div class="col-xm-6" style="float: right; margin-top: 2%; margin-right: 6%;">
-            <asp:Panel runat="server" ID="sendid" Visible="false">
-                <asp:TextBox runat="server" ID="txb_email" CssClass="form-control"></asp:TextBox>
-                <div class="text-center" style="margin-top: 2%;">
-                    <asp:Button runat="server" ID="btn_send_email"   UseSubmitBehavior="false"  CssClass="btn btn-danger" Text="Send Email " OnClick="btn_send_email_Click"   OnClientClick="return ConvertToImage(this)"  />
-                </div>
-            </asp:Panel>
+
+            <asp:TextBox runat="server" ID="txb_email" CssClass="form-control"></asp:TextBox>
+            <div class="text-center" style="margin-top: 2%;">
+                <asp:Button runat="server" ID="btn_send_email" UseSubmitBehavior="false" CssClass="btn btn-danger" Text="Send Email " OnClick="btn_send_email_Click" OnClientClick="return ConvertToImage(this)" />
+            </div>
+
         </div>
     </div>
 
@@ -296,7 +314,9 @@
         <asp:Label runat="server" Text="" Font-Size="16px" ForeColor="Red" ID="point_result"></asp:Label>
         <br />
         <asp:Label runat="server" Text="" Font-Size="18px" ID="Label3"></asp:Label>
-        <asp:LinkButton Text="(help)" ID="LinkButton4" runat="server" OnClick="LinkButton4_Click" />
+        <a href="helppage.aspx?id=54&heading=percentage">
+            <label>(help)</label>
+        </a>
         <br />
         <asp:Label runat="server" Text="" ForeColor="Red" Font-Size="16px" ID="Label4"></asp:Label>
 
@@ -309,13 +329,13 @@
         </asp:Label>
         <asp:Label runat="server" ID="posttreatment" Style="color: white;" />
 
-       <%--    <div style="width:100%;">    
+        <%--    <div style="width:100%;">    
         <asp:Image ImageUrl="~/images/momogram.png" runat="server" ID="momogram_image" width="100%" style="margin-top:5%;"/>
         <br /><br />   
    </div>--%>
     </div>
 
-    <div id="contentcontrol" runat="server"  style="width:100%; padding:4%; height: 600px;">
+    <div id="contentcontrol" runat="server" style="width: 100%; padding: 4%; height: 600px;">
         <div class="row list-inline" runat="server" id="ContentInfo">
 
             <div class="col-md-2 col-sm-2 col-lg-2 col-xm-2" style="text-align: right;">
@@ -340,8 +360,8 @@
     <asp:HiddenField ID="hdnImageData" runat="server" />
 
     <script src="Charts/ChartCreatingFile.js"></script>
- 
-    <script src="Scripts/Ajax.min.js"></script> 
+
+    <script src="Scripts/Ajax.min.js"></script>
 
     <script type="text/javascript">
 
@@ -350,12 +370,12 @@
             var _chart = {};
 
             var _width = 800, _height = 400,
-                    _margins = { top: 70, left: 40, right: 30, bottom: 50 },
-                    _x, _y, _r,
-                    _data = [],
-                    _colors = d3.scale.category10(),
-                    _svg,
-                    _bodyG;
+                _margins = { top: 70, left: 40, right: 30, bottom: 50 },
+                _x, _y, _r,
+                _data = [],
+                _colors = d3.scale.category10(),
+                _svg,
+                _bodyG;
 
             _chart.render = function () {
                 if (!_svg) {
@@ -368,54 +388,54 @@
 
             function renderAxes(svg) {
                 var axesG = svg.append("g")
-                        .attr("class", "axes");
+                    .attr("class", "axes");
 
                 var xAxis = d3.svg.axis()
-                        .scale(_x.range([0, quadrantWidth()]))
+                    .scale(_x.range([0, quadrantWidth()]))
 
-                        .orient("bottom");
+                    .orient("bottom");
 
                 var yAxis = d3.svg.axis()
-                        .scale(_y.range([quadrantHeight(), 0]))
-                        .orient("left");
+                    .scale(_y.range([quadrantHeight(), 0]))
+                    .orient("left");
 
                 axesG.append("g")
-                        .attr("class", "axis")
-                        .attr("transform", function () {
-                            return "translate(" + xStart() + "," + yStart() + ")";
-                        })
-                        .call(xAxis);
+                    .attr("class", "axis")
+                    .attr("transform", function () {
+                        return "translate(" + xStart() + "," + yStart() + ")";
+                    })
+                    .call(xAxis);
 
                 axesG.append("g")
-                        .attr("class", "axis")
-                        .attr("transform", function () {
-                            return "translate(" + xStart() + "," + yEnd() + ")";
-                        })
-                        .call(yAxis);
+                    .attr("class", "axis")
+                    .attr("transform", function () {
+                        return "translate(" + xStart() + "," + yEnd() + ")";
+                    })
+                    .call(yAxis);
             }
 
 
             function defineBodyClip(svg) {
                 var padding = 0;
                 svg.append("defs")
-                        .append("clipPath")
-                        .attr("id", "body-clip")
-                        .append("rect")
-                        .attr("x", 0)
-                        .attr("y", 0)
-                        .attr("width", quadrantWidth() + 2 * padding)
-                        .attr("height", quadrantHeight());
+                    .append("clipPath")
+                    .attr("id", "body-clip")
+                    .append("rect")
+                    .attr("x", 0)
+                    .attr("y", 0)
+                    .attr("width", quadrantWidth() + 2 * padding)
+                    .attr("height", quadrantHeight());
             }
 
             function renderBody(svg) {
                 if (!_bodyG)
                     _bodyG = svg.append("g")
-                            .attr("class", "body")
-                            .attr("transform", "translate("
-                                    + xStart()
-                                    + ","
-                                    + yEnd() + ")")
-                            .attr("clip-path", "url(#body-clip)");
+                        .attr("class", "body")
+                        .attr("transform", "translate("
+                            + xStart()
+                            + ","
+                            + yEnd() + ")")
+                        .attr("clip-path", "url(#body-clip)");
                 renderBubbles();
             }
 
@@ -424,28 +444,28 @@
 
                 _data.forEach(function (list, i) {
                     _bodyG.selectAll("circle._" + i)
-                                .data(list)
-                            .enter()
-                            .append("circle") // <-C
-                            .attr("class", "bubble _" + i);
+                        .data(list)
+                        .enter()
+                        .append("circle") // <-C
+                        .attr("class", "bubble _" + i);
                     _bodyG.selectAll("circle._" + i)
-                                .data(list)
-                            .style("stroke", function (d, j) {
-                                return _colors(j);
-                            })
-                            .style("fill", function (d, j) {
-                                return _colors(j);
-                            })
-                            .transition()
-                            .attr("cx", function (d) {
-                                return _x(d.x); // <-D
-                            })
-                            .attr("cy", function (d) {
-                                return _y(d.y); // <-E
-                            })
-                            .attr("r", function (d) {
-                                return _r(d.r);
-                            });
+                        .data(list)
+                        .style("stroke", function (d, j) {
+                            return _colors(j);
+                        })
+                        .style("fill", function (d, j) {
+                            return _colors(j);
+                        })
+                        .transition()
+                        .attr("cx", function (d) {
+                            return _x(d.x); // <-D
+                        })
+                        .attr("cy", function (d) {
+                            return _y(d.y); // <-E
+                        })
+                        .attr("r", function (d) {
+                            return _r(d.r);
+                        });
                 });
             }
 
@@ -546,7 +566,7 @@
 
                 k++;
 
-                return { x: b, y: k, r: 1 };
+                return { x: b, y: k, r: 2 };
 
             }));
 
@@ -557,16 +577,16 @@
         for (var i = 22; i < 100; i += 2)
             data.push(d3.range(22, 70, 1.1).map(function (i) {
                 j++;
-                return { x: i, y: j, r: 1 };
+                return { x: i, y: j, r: 2 };
             }));
 
 
 
 
         var chart = bubbleChart()
-                .x(d3.scale.linear().domain([0, 70]))
-                .y(d3.scale.linear().domain([0, 45]))
-                .r(d3.scale.pow().exponent(2).domain([0, 10]));
+            .x(d3.scale.linear().domain([0, 70]))
+            .y(d3.scale.linear().domain([0, 45]))
+            .r(d3.scale.pow().exponent(2).domain([0, 10]));
 
 
         data.forEach(function (series) {

@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace rstemenu {
-    
-    
-    public partial class all_users {
-        
+namespace rstemenu
+{
+
+
+    public partial class all_users
+    {
+
         /// <summary>
         /// gv_all_user control.
         /// </summary>

@@ -21,9 +21,6 @@
             <br />
             <asp:TextBox runat="server" ID="pat_id" CssClass="form-control" />
             <asp:RequiredFieldValidator runat="server" CssClass="text-danger" ControlToValidate="pat_id" ErrorMessage="Please Fill Patient id" />
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator2"
-                ControlToValidate="pat_id" ValidationExpression="\d+" Display="Static" EnableClientScript="true"
-                CssClass="text-danger" ErrorMessage="Please Enter numbers only" runat="server" />
         </div>
 
         <div class="col-md-12">

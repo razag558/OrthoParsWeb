@@ -18,26 +18,35 @@ namespace rstemenu.Account
         Methods obj = new Methods();
         protected void Page_Load(object sender, EventArgs e)
         {
+            SetingPromotionImage();
 
             UserAuthentication();
-           //nn RegisterHyperLink.NavigateUrl = "Register.aspx?ReturnUrl=" + HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
+
+            if (Request.QueryString["forget"] != null)
+                Response.Write("<script>alert('We have sent your password on your email')</script>");
         }
 
+        private void SetingPromotionImage()
+        {
+          DataTable dt =  obj.FetchingPromotionImage();
 
+            if (dt.Rows.Count > 0)
+                promotionimage.Src = "images/" + dt.Rows[0]["ImageName"].ToString();
+        }
 
         public string UserAuthentication()
         {
-            
-            if (Request.QueryString["un"] != null && Request.QueryString["p"]!=null)
+
+            if (Request.QueryString["un"] != null && Request.QueryString["p"] != null)
             {
                 string username = obj.userNameforAuthentication(Request.QueryString["un"].ToString(), Request.QueryString["p"].ToString());
-         
+
             }
 
             return "";
         }
 
-        
+
 
         protected void LoginUser_LoginError(object sender, EventArgs e)
         {
@@ -59,15 +68,15 @@ namespace rstemenu.Account
                 }
                 else
                     LoginUser.FailureText = "No Permission";
-                
+
             }
         }
 
-     
 
 
 
-  
+
+
 
 
     }

@@ -304,5 +304,25 @@ namespace rstemenu
 
         }
 
+        protected void datatable_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton l = (LinkButton)e.Row.FindControl("btn_Delete");
+                if (l != null && l.CommandName == "Delete")
+                    l.OnClientClick = "return confirm('Are you sure want to delete this record?');";
+            }
+        }
+
+        protected void datatable_PreRender(object sender, EventArgs e)
+        {
+            if (gv_patient_info.Rows.Count > 0)
+            {
+                gv_patient_info.UseAccessibleHeader = true;
+                gv_patient_info.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+        }
+
     }
 }

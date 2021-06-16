@@ -1929,9 +1929,9 @@
     <Content Include="overJet_main.aspx" />
     <Content Include="Patient_info.aspx" />
     <Content Include="Patient_Pars_Values.aspx" />
-    <Content Include="pikaday.js" />
     <Content Include="Positive_overbite.aspx" />
     <Content Include="PrivacyPolicy.aspx" />
+    <Content Include="PromoImages.aspx" />
     <Content Include="Result_show.aspx" />
     <Content Include="Scripts\Ajax.min.js" />
     <Content Include="Scripts\html2canvas.min.js" />
@@ -2255,6 +2255,13 @@
     </Compile>
     <Compile Include="PrivacyPolicy.aspx.designer.cs">
       <DependentUpon>PrivacyPolicy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PromoImages.aspx.cs">
+      <DependentUpon>PromoImages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PromoImages.aspx.designer.cs">
+      <DependentUpon>PromoImages.aspx</DependentUpon>
     </Compile>
     <Compile Include="Result_show.aspx.cs">
       <DependentUpon>Result_show.aspx</DependentUpon>

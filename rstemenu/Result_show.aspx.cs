@@ -106,9 +106,7 @@ namespace rstemenu
             DataTable dt = new DataTable();
 
             if (Session["Patient_ID"].ToString().Length > 0)
-            {
                 dt = obj.GetPatinetData(Int32.Parse((Session["Patient_ID"].ToString())));
-            }
             if (dt.Rows.Count > 0)
             {
                 foreach (DataRow row in dt.Rows)
@@ -128,33 +126,14 @@ namespace rstemenu
             }
 
         }
-
-        protected void LinkButton4_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/helppage.aspx?id=54&heading=percentage");
-        }
-
-
-
-        protected void LinkButton1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/helppage.aspx?id=hp1new&heading=newhelp");
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            sendid.Visible = true;
-        }
-
+ 
         [Obsolete]
         protected void download_pdf_Click(object sender, EventArgs e)
         {
             try
             {
-                string nameofimage = "";
-                string filePath = "";
-                nameofimage = SavingImage();
-                filePath = "http://orthopar.org/canvasimages/" + nameofimage;
+                //string   filePath = Path.Combine(Server.MapPath("~/canvasimages/"), SavingImage());
+                string filePath = "http://orthopar.org/canvasimages/" + SavingImage();
                 BindPatientVlaues();
                 StringBuilder columnbind = new StringBuilder();
                 columnbind.Append("<table Width='100%' border='0'><tr><td style='text-align:left'> <img width='50px' src =" + "'http://orthopar.org/images/parslogo.png'> </td>");
@@ -193,12 +172,7 @@ namespace rstemenu
                 else
                     columnbind.Append("<div>Any restorative treatment affecting the malocclusion?  </div>");
 
-                if (Request.QueryString["pre"] != null)
-                    pre_value = Request.QueryString["pre"];
-                if (Request.QueryString["post"] != null)
-                    post_value = Request.QueryString["post"];
-                result_value = Convert.ToInt32(pre_value) - Convert.ToInt32(post_value);
-                percentage = Math.Round(((Convert.ToDouble(pre_value) - Convert.ToDouble(post_value)) * 100) / Convert.ToDouble(pre_value), 2);
+                Calculatevaleus();
                 columnbind.Append("--------------------------------------------------------------------------------");
                 columnbind.Append("<div>");
                 columnbind.Append("1. Pretreatment Value of PAR (P1) : " + pre_value + "Points   <br/>");
@@ -240,6 +214,16 @@ namespace rstemenu
             {
                 Response.Write(ex);
             }
+        }
+
+        private void Calculatevaleus()
+        {
+            if (Request.QueryString["pre"] != null)
+                pre_value = Request.QueryString["pre"];
+            if (Request.QueryString["post"] != null)
+                post_value = Request.QueryString["post"];
+            result_value = Convert.ToInt32(pre_value) - Convert.ToInt32(post_value);
+            percentage = Math.Round(((Convert.ToDouble(pre_value) - Convert.ToDouble(post_value)) * 100) / Convert.ToDouble(pre_value), 2);
         }
 
         protected void download_csv_Click(object sender, EventArgs e)
@@ -311,10 +295,9 @@ namespace rstemenu
         protected void btn_send_email_Click(object sender, EventArgs e)
         {
             string emailto = txb_email.Text;
-            string nameofimage = "";
-            string filePath = "";
-            nameofimage = SavingImage();
-            filePath = "http://orthopar.org/canvasimages/" + nameofimage;
+            //string filePath   = Path.Combine(Server.MapPath("~/canvasimages/"), SavingImage());
+            string filePath = "http://orthopar.org/canvasimages/" + SavingImage();
+
             try
             {
                 BindPatientVlaues();
@@ -356,12 +339,7 @@ namespace rstemenu
 
                 string result = "";
 
-                if (Request.QueryString["pre"] != null)
-                    pre_value = Request.QueryString["pre"];
-                if (Request.QueryString["post"] != null)
-                    post_value = Request.QueryString["post"];
-                result_value = Convert.ToInt32(pre_value) - Convert.ToInt32(post_value);
-                percentage = Math.Round(((Convert.ToDouble(pre_value) - Convert.ToDouble(post_value)) * 100) / Convert.ToDouble(pre_value), 2);
+                Calculatevaleus();
 
                 if (result_value >= 22)
                     result = "(Point based treatment changes (P1-P2): As the change is more than 22 points, this indicates a great improvement secondary to the treatment)";
@@ -375,31 +353,28 @@ namespace rstemenu
                 else if (percentage >= 70)
                     st_percentage = " (PAR percentage result for this case is greater than 70% which indicates Great improvement)";
                 string bodycontent = Header + "<h2>PAR COMPLETE RESULT</h2><br><b>Dear " + doctor_name + "</b> <br><br> Here your Assessment<br><p>Patient Name: " + pat_name + "</p><p>Patient ID: " + patient_id.ToString() + "</p>" + PatientOtherDetail + "<p> 1.Pretreatment Value of PAR (P1) : " + pre_value + "</p><p> 2.Posttreatment Value of PAR (P2): " + post_value + "</p><p>3. PAR Point-base treatment change (P1 - P2): " + result_value + " points </p><p>" + result + "</p><p>4. PAR Percentage-based Treatment Change {(P1-P2/P1) * 100} : " + percentage + "%<br><br>" + st_percentage + "<br><br>" + chartdata + "<br><br><b>ORTHO PAR</b>";
+            
                 MailMessage message = new MailMessage();
                 message.To.Add(new MailAddress(emailto));
                 message.From = new MailAddress("info@orthopar.org");
                 message.Subject = "Par Result Report";
                 message.Body = bodycontent;
                 message.IsBodyHtml = true;
-                SmtpClient smtp = new SmtpClient("smtpout.asia.secureserver.net", 80);
-                smtp.EnableSsl = true;
-                NetworkCredential nc = new NetworkCredential("info@orthopar.org", "Ayesha-22");
-                smtp.Credentials = nc;
-                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-                smtp.Send(message);
+
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new NetworkCredential("info@orthopar.org", "Ayesha-22");
+                client.Host = "relay-hosting.secureserver.net";
+                client.Send(message);
                 message.To.Clear();
+
                 email_response_show.Text = "Email Send";
             }
             catch (Exception ex)
             {
-                if (ex != null)
-                    email_response_show.Text = ex.ToString();
+                email_response_show.Text = "Error occurred while sending mail";
             }
         }
-        public void View_patients(object sender, EventArgs e)
-        {
-            Response.Redirect("all_patients_record.aspx");
-        }
+      
         public string SavingImage()
         {
             string ItemImg = "m" + DateTime.Now.Month.ToString() + "d" + DateTime.Now.Day.ToString() + "y" + DateTime.Now.Year.ToString() + "h" + DateTime.Now.Hour.ToString() + "m" + DateTime.Now.Minute.ToString() + "ml" + DateTime.Now.Millisecond.ToString() + "_Item.jpg";

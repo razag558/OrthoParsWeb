@@ -5,16 +5,23 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-     <title>  </title>
-    
+    <title></title>
+
+    <%--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>--%>
+
+
     <link href="Styles/SASite.css" rel="stylesheet" type="text/css" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/bootstrap.min.css" rel="stylesheet" />
     <link href="Content/Site.css" rel="stylesheet" />
-    <a href="fonts/glyphicons-halflings-regular.woff"> </a>
-    <a href="fonts/glyphicons-halflings-regular.ttf"> </a>
-    <a href="fonts/glyphicons-halflings-regular.svg"> </a>
-    <a href="fonts/glyphicons-halflings-regular.eot"> </a>
+    <a href="fonts/glyphicons-halflings-regular.woff"></a>
+    <a href="fonts/glyphicons-halflings-regular.ttf"></a>
+    <a href="fonts/glyphicons-halflings-regular.svg"></a>
+    <a href="fonts/glyphicons-halflings-regular.eot"></a>
     <link href="fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet" />
     <link href="fontawesome-free-5.12.1-web/css/all.min.css" rel="stylesheet" />
     <link href="fontawesome-free-5.12.1-web/css/brands.css" rel="stylesheet" />
@@ -31,67 +38,66 @@
     <link href="fontawesome-free-5.12.1-web/css/v4-shims.min.css" rel="stylesheet" />
 
 </head>
- 
-<asp:ContentPlaceHolder ID="HeadContent" runat="server">    
 
-    </asp:ContentPlaceHolder>
+<asp:ContentPlaceHolder ID="HeadContent" runat="server">
+</asp:ContentPlaceHolder>
 
-<body >
+<body>
     <form id="Form1" runat="server">
         <asp:ScriptManager runat="server"></asp:ScriptManager>
-    <div class="page">
-        <div class="header"  >
-            <div class="title" id="applicationname"  >
-                <h1 id="name" runat="server" visible="false">
-                  ortho par
-                </h1 >
-                <h1 id="backbutton" runat="server" visible="false">
-                     <a href="Default.aspx"><img src="images/homeico.png" /></a>
-              <asp:Button  Visible="false"  id="back_button"  runat="server"  Text="Back"  style="background-color:#ffffff;" OnClientClick="JavaScript:window.history.back(1); return false;">  </asp:Button> 
-                      
-                </h1>
-                   <h1 id="backbuttonofeditpage" runat="server" visible="false">
-            <asp:Button   id="back_button_of_update"  PostBackUrl="~/all_users.aspx" runat="server"  Text="Back"  style="background-color:#ffffff;" >  </asp:Button>      
-                </h1>
-  
-                   <h1 id="backbuttonofcompleterecord" runat="server" visible="false">
-            <asp:Button   id="backbuttonofcompleterec"  PostBackUrl="~/all_users.aspx" runat="server"  Text="Back"  style="background-color:#ffffff;" >  </asp:Button>  
-                      
-                </h1>
-            </div>
-             
-            <div class="loginDisplay"  >
-                <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
-                    <AnonymousTemplate>
-                        
-                    </AnonymousTemplate>
-                    <LoggedInTemplate>
-                        Welcome <span class="bold"><asp:LoginName ID="HeadLoginName" runat="server" /></span>!
-                        [ <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/"/> ]
-                    </LoggedInTemplate>
-                </asp:LoginView> 
-            </div>
-            <div class="clear hideSkiplink">
-                
+        <div class="page">
+            <div class="header">
+                <div class="title" id="applicationname">
+                    <h1 id="name" runat="server" visible="false">ortho par
+                    </h1>
+                    <h1 id="backbutton" runat="server" visible="false">
+                        <a href="Default.aspx">
+                            <img src="images/homeico.png" /></a>
+                        <asp:Button Visible="false" ID="back_button" runat="server" Text="Back" Style="background-color: #ffffff;" OnClientClick="JavaScript:window.history.back(1); return false;"></asp:Button>
 
-                
+                    </h1>
+                    <h1 id="backbuttonofeditpage" runat="server" visible="false">
+                        <asp:Button ID="back_button_of_update" PostBackUrl="~/all_users.aspx" runat="server" Text="Back" Style="background-color: #ffffff;"></asp:Button>
+                    </h1>
+
+                    <h1 id="backbuttonofcompleterecord" runat="server" visible="false">
+                        <asp:Button ID="backbuttonofcompleterec" PostBackUrl="~/all_users.aspx" runat="server" Text="Back" Style="background-color: #ffffff;"></asp:Button>
+
+                    </h1>
+                </div>
+
+                <div class="loginDisplay">
+                    <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                        <AnonymousTemplate>
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            Welcome <span class="bold">
+                                <asp:LoginName ID="HeadLoginName" runat="server" />
+                            </span>!
+                        [
+                            <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/" />
+                            ]
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+                <div class="clear hideSkiplink">
+                </div>
+            </div>
+
+
+            <div>
+                <hr class="row" />
+            </div>
+            <div class="main">
+
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+            <div class="clear">
             </div>
         </div>
- 
- 
-       <div>
-       <hr class="row" />
-       </div>
-        <div class="main">
-       
-            <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
+        <div class="footer">
+            © OrthoPAR 2020. All Rights Reserved. &nbsp;&nbsp;|&nbsp;&nbsp; <a href="PrivacyPolicy.aspx" title="Privacy Policy">Privacy Policy</a>
         </div>
-        <div class="clear">
-        </div>
-    </div>
-    <div class="footer">
-        © OrthoPAR 2020. All Rights Reserved. &nbsp;&nbsp;|&nbsp;&nbsp; <a href="PrivacyPolicy.aspx" title="Privacy Policy">Privacy Policy</a>
-    </div>
     </form>
 </body>
 </html>
