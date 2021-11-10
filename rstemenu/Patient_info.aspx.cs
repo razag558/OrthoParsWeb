@@ -62,8 +62,10 @@ namespace rstemenu
                 restorative = "No";
             string selecteddatetime = patientcheckdate.Value;
             String username = User.Identity.Name;
+ 
+            DateTime date2 = Convert.ToDateTime(selecteddatetime, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
 
-            data = obj.submittion_of_Patient_info(doctor_name.Text, pat_id.Text, pat_name.Text, gender, impact_teeth, missing_teeth, extracted, replacement, restorative, Convert.ToDateTime(selecteddatetime), username);
+            data = obj.submittion_of_Patient_info(doctor_name.Text, pat_id.Text, pat_name.Text, gender, impact_teeth, missing_teeth, extracted, replacement, restorative, date2, username);
             Session["Patient_ID"] = data;
             Session["Patient_Name"] = pat_name.Text.ToString();
             Response.Redirect("~/Treatment_type.aspx?id=" + data + "&pat_name=" + pat_name.Text);

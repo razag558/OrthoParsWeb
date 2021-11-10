@@ -31,11 +31,12 @@
         <div>
             <label for="dtp_input1" class="col-md-12 control-label">DateTime</label>
             <div class="input-group date form_datetime col-md-7"  data-date-format="dd/mm/yyyy HH:ii:ss p" data-link-field="dtp_input1">
-                <input class="form-control" size="16" type="text" value="" id="patientcheckdate" runat="server" readonly>
+                <input class="form-control" size="16" type="text" value="" id="patientcheckdate" required="required" runat="server" readonly>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
             </div>
             <input type="hidden" id="dtp_input1" value="" /><br />
+            <asp:RequiredFieldValidator runat="server" CssClass="text-danger" ControlToValidate="patientcheckdate" ErrorMessage="Date and Time is Required" />
         </div>
         <br />
         <br />

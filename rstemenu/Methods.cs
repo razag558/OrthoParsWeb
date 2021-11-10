@@ -13,10 +13,6 @@ using WCharts;
 using System.Globalization;
 using System.Configuration;
 using System.Text;
-using System.Net.Mail;
-
-
-
 
 
 namespace rstemenu
@@ -57,7 +53,7 @@ namespace rstemenu
             return connStr.ToString();
         }
 
-      
+
 
         public DataTable GetPromotionImages()
         {
@@ -295,7 +291,7 @@ namespace rstemenu
                 cmd.Dispose();
                 con.Close();
             }
- 
+
         }
 
         public DataTable Fetching_data_for_updating(int id)
@@ -1020,13 +1016,13 @@ namespace rstemenu
         //        con.Close();
         //    }
         //}
-        
+
 
         public void Inserting_Pre_Patient_Value(string Pat_ID, string pre_uper_ur2_ur3, string pre_uper_ur1_ur2, string pre_uper_ul1_ur1, string pre_uper_ul2_ul1,
             string pre_uper_ul3_ul2, string pre_uper_type_definer, string pre_lower_ur2_ur3, string pre_lower_ur1_ur2, string pre_lower_ul1_ur1, string pre_lower_ul2_ul1, string pre_lower_ul3_ul2, string pre_lower_type_definer,
-            string pre_right_buccal_anterior, string pre_right_buccal_vertical,string pre_left_buccal_anterior,string pre_right_buccal_transverse,
-            string pre_left_buccal_vertical,string pre_left_buccal_transverse, string pre_positive_overjet,
-               string pre_negative_overjet,string pre_overjet_type,string pre_positive_overbite,string pre_negative_overbite,string pre_overbite_type,string pre_midline)
+            string pre_right_buccal_anterior, string pre_right_buccal_vertical, string pre_left_buccal_anterior, string pre_right_buccal_transverse,
+            string pre_left_buccal_vertical, string pre_left_buccal_transverse, string pre_positive_overjet,
+               string pre_negative_overjet, string pre_overjet_type, string pre_positive_overbite, string pre_negative_overbite, string pre_overbite_type, string pre_midline)
         {
             SqlConnection con = new SqlConnection(connStr);
             con.Open();
@@ -1043,7 +1039,7 @@ namespace rstemenu
                 cmd.Parameters.Add(new SqlParameter("@pre_uper_ul1_ur1", pre_uper_ul1_ur1));
                 cmd.Parameters.Add(new SqlParameter("@pre_uper_ul2_ul1", pre_uper_ul2_ul1));
                 cmd.Parameters.Add(new SqlParameter("@pre_uper_ul3_ul2", pre_uper_ul3_ul2));
-                    
+
                 cmd.Parameters.Add(new SqlParameter("@pre_uper_type_definer", pre_uper_type_definer));
                 cmd.Parameters.Add(new SqlParameter("@pre_lower_ur2_ur3", pre_lower_ur2_ur3));
                 cmd.Parameters.Add(new SqlParameter("@pre_lower_ur1_ur2", pre_lower_ur1_ur2));
@@ -1056,7 +1052,7 @@ namespace rstemenu
                 cmd.Parameters.Add(new SqlParameter("@pre_right_buccal_vertical", pre_right_buccal_vertical));
                 cmd.Parameters.Add(new SqlParameter("@pre_right_buccal_transverse", pre_right_buccal_transverse));
 
-                
+
                 cmd.Parameters.Add(new SqlParameter("@pre_left_buccal_anterior", pre_left_buccal_anterior));
                 cmd.Parameters.Add(new SqlParameter("@pre_left_buccal_vertical", pre_left_buccal_vertical));
                 cmd.Parameters.Add(new SqlParameter("@pre_left_buccal_transverse", pre_left_buccal_transverse));
@@ -1068,7 +1064,7 @@ namespace rstemenu
                 cmd.Parameters.Add(new SqlParameter("@pre_negative_overbite", pre_negative_overbite));
                 cmd.Parameters.Add(new SqlParameter("@pre_overbite_type", pre_overbite_type));
                 cmd.Parameters.Add(new SqlParameter("@pre_midline", pre_midline));
-                 
+
                 cmd.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand = cmd;
                 da.Fill(dt);
